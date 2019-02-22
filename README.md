@@ -1,8 +1,8 @@
-# Movingimage trial demo
+# Video probe trial demo
 
-## Video probing service
+## Video probing service **video-probe**
 
-* probe endpoint -> creates/updates info about video
+* probe endpoint -> creates info about video
 * long running operation -> use asynchronous API
 * using REST endpoint to push request into MQ
 * actual probe operation is asynchronous, consuming MQ
@@ -12,17 +12,18 @@
 * return immediately
 
 * Can be tested with
+
 		curl localhost:8080/probe -XPOST -H "Content-Type: application/json" -d '{ "url": "http://localhost/videos/5.mp4"}'
 
 
-### probe worker
+## Probe worker **video-probe-worker**
 * receive probe operations from MQ
 * download video, store locally in temp file
 * probe with ffmpeg
 * saves results into video info service
 * cleanup temp file
 
-## Video information service
+## Video information service **video-info**
 
 * CRUD information about video
 * REST endpoints
